@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore various public APIs on the Public API Explorer platform. Generate dogs, jokes, dummy data, and more!" />
+  <title>Public API Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <!-- Use phosphor icons for better UI icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <div class="background-elements">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <h1>Public API Explorer</h1>
+      <p>Discover real-world APIs with a dynamic, engaging interface</p>
+    </header>
+
+    <main class="grid-layout">
+      <!-- Card 1: Dog Finder -->
+      <section class="card glass-effect" id="dog-card">
+        <div class="card-header">
+          <div class="icon-wrapper"><i class="ph ph-dog"></i></div>
+          <h2>Dog Finder</h2>
+        </div>
+        <div class="card-content">
+          <div class="result-area" id="dog-result">
+            <div class="placeholder-state">
+              <i class="ph ph-image"></i>
+              <p>Ready to fetch a dog picture!</p>
+            </div>
+          </div>
+          <div class="dog-info hidden" id="dog-info">
+            <span class="breed-badge" id="dog-breed">Breed</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn primary-btn" id="btn-get-dog">
+            <i class="ph ph-paw-prints"></i> Get Dog
+          </button>
+          <button class="btn secondary-btn hidden" id="btn-copy-dog" title="Copy Image URL">
+            <i class="ph ph-copy"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- Card 2: Joke Generator -->
+      <section class="card glass-effect" id="joke-card">
+        <div class="card-header">
+          <div class="icon-wrapper"><i class="ph ph-smiley"></i></div>
+          <h2>Joke Generator</h2>
+        </div>
+        <div class="card-content">
+          <div class="result-area joke-area" id="joke-result">
+            <div class="placeholder-state">
+              <i class="ph ph-mask-happy"></i>
+              <p>Need a laugh?</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn primary-btn" id="btn-get-joke">
+            <i class="ph ph-sparkle"></i> Get Joke
+          </button>
+          <button class="btn secondary-btn hidden" id="btn-next-joke" title="Next Joke">
+            <i class="ph ph-arrow-right"></i> Next
+          </button>
+        </div>
+      </section>
+
+      <!-- Card 3: Random User Profile -->
+      <section class="card glass-effect" id="user-card">
+        <div class="card-header">
+          <div class="icon-wrapper"><i class="ph ph-user"></i></div>
+          <h2>Random User</h2>
+        </div>
+        <div class="card-content">
+          <div class="result-area" id="user-result">
+             <div class="placeholder-state">
+              <i class="ph ph-identification-card"></i>
+              <p>Generate a random identity</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn primary-btn" id="btn-get-user">
+            <i class="ph ph-users"></i> Get User
+          </button>
+        </div>
+      </section>
+
+      <!-- Card 4: JSONPlaceholder -->
+      <section class="card glass-effect" id="json-card">
+        <div class="card-header">
+          <div class="icon-wrapper"><i class="ph ph-database"></i></div>
+          <h2>JSONPlaceholder</h2>
+        </div>
+        <div class="card-content">
+          <div class="resource-selector">
+            <label for="resource-select">Resource Type:</label>
+            <select id="resource-select" class="dropdown">
+              <option value="posts">Posts</option>
+              <option value="comments">Comments</option>
+              <option value="albums">Albums</option>
+              <option value="photos">Photos</option>
+            </select>
+          </div>
+          <div class="result-area json-area" id="json-result">
+            <div class="placeholder-state">
+              <i class="ph ph-file-text"></i>
+              <p>Fetch sample payload data</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn primary-btn" id="btn-get-json">
+            <i class="ph ph-cloud-arrow-down"></i> Fetch Data
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="main.js" type="module"></script>
+</body>
+</html>
