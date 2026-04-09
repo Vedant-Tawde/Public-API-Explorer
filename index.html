@@ -98,32 +98,66 @@
         </div>
       </section>
 
-      <!-- Card 4: JSONPlaceholder -->
-      <section class="card glass-effect" id="json-card">
+
+      <!-- Card 5: Advice Generator -->
+      <section class="card glass-effect" id="advice-card">
         <div class="card-header">
-          <div class="icon-wrapper"><i class="ph ph-database"></i></div>
-          <h2>JSONPlaceholder</h2>
+          <div class="icon-wrapper"><i class="ph ph-chat-teardrop-text"></i></div>
+          <h2>Advice Generator</h2>
         </div>
         <div class="card-content">
-          <div class="resource-selector">
-            <label for="resource-select">Resource Type:</label>
-            <select id="resource-select" class="dropdown">
-              <option value="posts">Posts</option>
-              <option value="comments">Comments</option>
-              <option value="albums">Albums</option>
-              <option value="photos">Photos</option>
-            </select>
-          </div>
-          <div class="result-area json-area" id="json-result">
+          <div class="result-area joke-area" id="advice-result">
             <div class="placeholder-state">
-              <i class="ph ph-file-text"></i>
-              <p>Fetch sample payload data</p>
+              <i class="ph ph-lightbulb"></i>
+              <p>Need some advice?</p>
             </div>
           </div>
         </div>
         <div class="card-actions">
-          <button class="btn primary-btn" id="btn-get-json">
-            <i class="ph ph-cloud-arrow-down"></i> Fetch Data
+          <button class="btn primary-btn" id="btn-get-advice">
+            <i class="ph ph-magic-wand"></i> Get Advice
+          </button>
+        </div>
+      </section>
+
+      <!-- Card 6: Random Fact -->
+      <section class="card glass-effect" id="fact-card">
+        <div class="card-header">
+          <div class="icon-wrapper"><i class="ph ph-book-open-text"></i></div>
+          <h2>Random Fact</h2>
+        </div>
+        <div class="card-content">
+          <div class="result-area joke-area" id="fact-result">
+            <div class="placeholder-state">
+              <i class="ph ph-brain"></i>
+              <p>Learn something new</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn primary-btn" id="btn-get-fact">
+            <i class="ph ph-magnifying-glass"></i> Get Fact
+          </button>
+        </div>
+      </section>
+
+      <!-- Card 7: Cat Image -->
+      <section class="card glass-effect" id="cat-card">
+        <div class="card-header">
+          <div class="icon-wrapper"><i class="ph ph-cat"></i></div>
+          <h2>Cat Image</h2>
+        </div>
+        <div class="card-content">
+          <div class="result-area" id="cat-result">
+            <div class="placeholder-state">
+              <i class="ph ph-image"></i>
+              <p>Get a random cat!</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn primary-btn" id="btn-get-cat">
+            <i class="ph ph-paw-prints"></i> Get Cat
           </button>
         </div>
       </section>

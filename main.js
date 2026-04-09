@@ -183,31 +183,98 @@ const setupUserAPI = () => {
   });
 };
 
+
+
 /**
- * 4. JSONPlaceholder API Implementation
+ * 5. Advice Generator API
  */
-const setupJsonAPI = () => {
-  const btn = document.getElementById('btn-get-json');
-  const select = document.getElementById('resource-select');
-  const resultArea = document.getElementById('json-result');
+const setupAdviceAPI = () => {
+  const btn = document.getElementById('btn-get-advice');
+  const resultArea = document.getElementById('advice-result');
 
   btn.addEventListener('click', async () => {
-    const resource = select.value;
-    setButtonLoading(btn, true, 'ph ph-cloud-arrow-down', 'Fetch Data');
+    setButtonLoading(btn, true, 'ph ph-magic-wand', 'Get Advice');
     showLoader(resultArea);
 
     try {
-      // Fetch 1 random item or a small limit for preview
-      const response = await fetch(`https://jsonplaceholder.typicode.com/${resource}?_limit=2`);
-      if (!response.ok) throw new Error('Failed to fetch data');
+      // API response might be cached by browser. Adding timestamp query overrides cache
+      const response = await fetch('https://api.adviceslip.com/advice?t=' + Date.now());
+      if (!response.ok) throw new Error('Failed to fetch advice');
       
       const data = await response.json();
       
-      resultArea.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      resultArea.innerHTML = `
+        <div class="joke-punchline" style="font-size: 1.1rem; color: var(--text-main); font-weight: 500;">
+          "${data.slip.advice}"
+        </div>
+      `;
     } catch (err) {
-      showError(resultArea, `Failed to load ${resource}.`);
+      showError(resultArea, 'Could not load advice.');
     } finally {
-      setButtonLoading(btn, false, 'ph ph-cloud-arrow-down', 'Fetch Data');
+      setButtonLoading(btn, false, 'ph ph-magic-wand', 'Get Advice');
+    }
+  });
+};
+
+/**
+ * 6. Random Fact API
+ */
+const setupFactAPI = () => {
+  const btn = document.getElementById('btn-get-fact');
+  const resultArea = document.getElementById('fact-result');
+
+  btn.addEventListener('click', async () => {
+    setButtonLoading(btn, true, 'ph ph-magnifying-glass', 'Get Fact');
+    showLoader(resultArea);
+
+    try {
+      const response = await fetch('https://uselessfacts.jsph.pl/random.json?language=en');
+      if (!response.ok) throw new Error('Failed to fetch fact');
+      
+      const data = await response.json();
+      
+      resultArea.innerHTML = `
+        <div class="joke-punchline" style="font-size: 1.1rem; color: var(--accent-1); font-weight: 500;">
+          ${data.text}
+        </div>
+      `;
+    } catch (err) {
+      showError(resultArea, 'Could not load fact.');
+    } finally {
+      setButtonLoading(btn, false, 'ph ph-magnifying-glass', 'Get Fact');
+    }
+  });
+};
+
+/**
+ * 7. Cat Image API
+ */
+const setupCatAPI = () => {
+  const btn = document.getElementById('btn-get-cat');
+  const resultArea = document.getElementById('cat-result');
+
+  btn.addEventListener('click', async () => {
+    setButtonLoading(btn, true, 'ph ph-paw-prints', 'Get Cat');
+    showLoader(resultArea);
+
+    try {
+      const response = await fetch('https://api.thecatapi.com/v1/images/search');
+      if (!response.ok) throw new Error('Failed to fetch cat');
+      
+      const data = await response.json();
+      const imageUrl = data[0].url;
+      
+      const img = new Image();
+      img.src = imageUrl;
+      img.className = 'result-image';
+      img.onload = () => {
+        resultArea.innerHTML = '';
+        resultArea.appendChild(img);
+        setButtonLoading(btn, false, 'ph ph-paw-prints', 'Get Cat');
+      };
+    } catch (err) {
+      showError(resultArea, 'Could not fetch a cat.');
+      setButtonLoading(btn, false, 'ph ph-paw-prints', 'Get Cat');
     }
   });
 };
@@ -217,5 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupDogAPI();
   setupJokeAPI();
   setupUserAPI();
-  setupJsonAPI();
+
+  setupAdviceAPI();
+  setupFactAPI();
+  setupCatAPI();
 });
