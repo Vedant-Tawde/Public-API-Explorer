@@ -121,15 +121,21 @@ const setupJokeAPI = () => {
     showLoader(resultArea);
 
     try {
-      const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+      const response = await fetch('https://v2.jokeapi.dev/joke/Any');
       if (!response.ok) throw new Error('Failed to fetch joke');
       
       const data = await response.json();
       
-      resultArea.innerHTML = `
-        <div class="joke-setup">${data.setup}</div>
-        <div class="joke-punchline">${data.punchline}</div>
-      `;
+      if (data.type === 'single') {
+        resultArea.innerHTML = `
+          <div class="joke-punchline">${data.joke}</div>
+        `;
+      } else {
+        resultArea.innerHTML = `
+          <div class="joke-setup">${data.setup}</div>
+          <div class="joke-punchline">${data.delivery}</div>
+        `;
+      }
       
       // Update UI for next interactions
       btn.classList.add('hidden');
